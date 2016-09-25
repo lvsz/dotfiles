@@ -1,0 +1,11 @@
+# made for screen-for-OSX (https://github.com/FreedomBen/screen-for-OSX)
+shell -$SHELL
+msgwait 0
+# mousetrack on
+hardstatus alwayslastline
+hardstatus string '%{= W.}[%S]%= %-w%{R}<%n %t>%{k}%?(%u)%?%+w%=[%{K}%m/%d %c%{k}]'
+
+bind s split -v
+
+caption string "%{= Wk} "
+sorendition "= Wk"
