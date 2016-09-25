@@ -52,7 +52,7 @@ hi CursorLineNr cterm=bold ctermfg=241
 hi ExtraWhitespace ctermbg=220
 match ExtraWhitespace /\s\+$/
 
-" underline current cursor line
+" make cursor line stand out
 set cursorline
 hi CursorLine cterm=bold
 
