@@ -1,11 +1,23 @@
 # made for screen-for-OSX (https://github.com/FreedomBen/screen-for-OSX)
+# but should work for any recent version of GNU Screen
 shell -$SHELL
+
+# not using this at the moment
+#mousetrack on
+
+# useful with vim-slime
 msgwait 0
-# mousetrack on
+
+# status bar
 hardstatus alwayslastline
-hardstatus string '%{= W.}[%S]%= %-w%{R}<%n %t>%{k}%?(%u)%?%+w%=[%{K}%m/%d %c%{k}]'
+hardstatus string '%{= W.}[%S]%= %-w%{r}<%n %t>%{k}%?(%u)%?%+w%=[%{K}%m/%d %c%{k}]'
 
-bind s split -v
-
+# colors the borders
+# uses your terminal's "bright white" default, which I changed to a light gray
+# after failing to find a brighter white than normal white
 caption string "%{= Wk} "
 sorendition "= Wk"
+
+# Ctrl-S is used for horizontal split
+# so use Ctrl-s for vertical split
+bind s split -v
