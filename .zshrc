@@ -49,6 +49,10 @@ plugins=(
     vscode
 )
 
+alias gcs="git commit --gpg-sign"
+alias gcsa="git commit --gpg-sign -a"
+alias gcas="git commit -a --gpg-sign"
+
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 source $ZSH/oh-my-zsh.sh
 
@@ -79,6 +83,77 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
+alias shlvl='echo $SHLVL'
+alias vo='vi'
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
+
+#_git_checkout ()
+#{
+#    __git_has_doubledash && return
+#
+#    local dwim_opt="$(__git_checkout_default_dwim_mode)"
+#
+#    case "$prev" in
+#    -b|-B|--orphan)
+#        # Complete local branches (and DWIM branch
+#        # remote branch names) for an option argument
+#        # specifying a new branch name. This is for
+#        # convenience, assuming new branches are
+#        # possibly based on pre-existing branch names.
+#        #__git_complete_refs $dwim_opt --mode="heads"
+#        __gitcomp_direct "$(__git_heads "" "$cur" " ")"
+#        return
+#        ;;
+#    *)
+#        ;;
+#    esac
+#
+#    case "$cur" in
+#    --conflict=*)
+#        __gitcomp "diff3 merge zdiff3" "" "${cur##--conflict=}"
+#        ;;
+#    --*)
+#        __gitcomp_builtin checkout
+#        ;;
+#    *)
+#        # At this point, we've already handled special completion for
+#        # the arguments to -b/-B, and --orphan. There are 3 main
+#        # things left we can possibly complete:
+#        # 1) a start-point for -b/-B, -d/--detach, or --orphan
+#        # 2) a remote head, for --track
+#        # 3) an arbitrary reference, possibly including DWIM names
+#        #
+#
+#        if [ -n "$(__git_find_on_cmdline "-b -B -d --detach --orphan")" ]; then
+#            __git_complete_refs --mode="refs"
+#        elif [ -n "$(__git_find_on_cmdline "--track")" ]; then
+#            __git_complete_refs --mode="remote-heads"
+#        else
+#            echo hehh
+#            echo hehh
+#            echo hehh
+#            __gitcomp_direct "$(__git_heads "" "$cur" " ")"
+#            #__git_complete_refs $dwim_opt --mode="refs"
+#        fi
+#        ;;
+#    esac
+#}
+#
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE='/home/odoo/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/odoo/.local/share/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
