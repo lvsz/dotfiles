@@ -50,6 +50,10 @@ plugins=(
     vscode
 )
 
+alias gcs="git commit --gpg-sign"
+alias gcsa="git commit --gpg-sign -a"
+alias gcas="git commit -a --gpg-sign"
+
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 source $ZSH/oh-my-zsh.sh
 
@@ -76,6 +80,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 alias shlvl='echo $SHLVL'
+alias vo='vi'
 
 alias gcs="git commit --gpg-sign"
 alias gcsa="git commit --gpg-sign -a"
