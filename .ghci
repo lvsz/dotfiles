@@ -1,6 +1,4 @@
-
 :set prompt  "λ "
-:set prompt2  "| "
 :seti -XFlexibleContexts
 :seti -XFlexibleInstances
 :seti -XRankNTypes
@@ -8,7 +6,6 @@
 :seti -XTypeApplications
 :seti -XGeneralizedNewtypeDeriving
 :seti -XLambdaCase
-:seti -XDictionaryApplications
 :seti -XDuplicateRecordFields
 :seti -XBangPatterns
 :seti -XExplicitForAll
