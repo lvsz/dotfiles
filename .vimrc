@@ -34,7 +34,7 @@ set undodir="~/.cache/vim/undo"
 set clipboard=unnamed
 
 " use Q to toggle mouse instead of ex mode
-map Q :call MouseToggle()<Cr>
+map <L-q> :call MouseToggle()<Cr>
 function! MouseToggle()
     if &mouse =~# 'a'
         setlocal mouse=""
@@ -44,21 +44,25 @@ function! MouseToggle()
 endfunction
 setlocal mouse=a
 
-" make :Q work like :q
-command Q  q
+" make :Q work like :qa
+command Q qa
+
+" map Ctrl-C to ESC
+inoremap <C-c> <ESC>
 
 " :w shortcuts
 map Zz :w<Cr>
 map ZX :w<Cr>
 
-colorscheme elflord
+"colorscheme elflord
 "set background=light
 set background=dark
 "hi Normal       ctermfg=59 ctermbg=none
-hi Boolean      ctermfg=23
-hi Delimiter    ctermfg=246
+"hi Boolean      ctermfg=23
+hi Boolean      ctermfg=163
+hi Delimiter    ctermfg=117
 hi Directory    ctermfg=2
-hi Conditional  ctermfg=57
+hi Conditional  ctermfg=138
 "hi Constant     ctermfg=127
 hi Constant     ctermfg=212
 hi Identifier   ctermfg=151 cterm=bold
@@ -74,10 +78,10 @@ hi Repeat       ctermfg=185
 hi Search       ctermbg=227
 hi SpellCap     ctermfg=0  ctermbg=225
 "hi Statement    ctermfg=115
-hi Statement    ctermfg=179
-hi Type         ctermfg=152
-hi Visual       ctermbg=195
-hi Special      ctermfg=69
+hi Statement    ctermfg=134
+hi Type         ctermfg=39
+hi Visual       ctermbg=20
+hi Special      ctermfg=68
 hi Comment      ctermfg=139
 hi Error        ctermfg=88 ctermbg=197 cterm=bold
 hi EndOfBuffer  ctermfg=133 ctermbg=none
@@ -94,7 +98,7 @@ hi CursorLine   ctermfg=none ctermbg=29 cterm=bold
 hi Terminal     ctermfg=none ctermbg=none
 
 " change diff colors
-hi DiffAdd      ctermfg=22   ctermbg=122
+hi DiffAdd      ctermfg=17   ctermbg=122
 hi DiffChange   ctermfg=18   ctermbg=153
 hi DiffDelete   ctermfg=231  ctermbg=31
 hi DiffText     ctermfg=none ctermbg=88
@@ -128,3 +132,17 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 "endfunction
 "au CursorMoved * call CursHI()
 
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsUsePythonVersion = 3
+
+function! RestoreCursorPosition()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call RestoreCursorPosition()
+augroup END
