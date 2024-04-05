@@ -1,15 +1,17 @@
 # Import lines from .bashrc file
-source "$HOME/.bashrc"
-
-# Add ~/bin to $PATH
-export PATH="$HOME/bin:$PATH"
-# export PATH="/usr/local/bin:$HOME/bin:$HOME/.local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-# Use vi mode
-# set -o vi
+export profile_loaded=1
+case "$bashrc_loaded" in
+    1) unset bashrc_loaded ;;
+    *) source "$HOME/.bashrc";;
+esac
+unset profile_loaded
 
 # Change shell prompt to only display current directory
-PS1="\W\$ "
+#PS1="\W\$ "
+#PS1='\w\[\033[00m\]\$ '
+#PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#PS1='\[\033[01;34m\]\W\[\033[00m\]\$ '
+PS1='\[\033[01;35m\]\W\[\033[00m\]\$ '
 
 # keep .bash_history backed up
 HISTSIZE="NaN"
@@ -19,13 +21,6 @@ test `wc -l < ~/.bash_history` -ge 10000 \
     && head -5000 $HOME/.bash_history > $HOME/.history/`date +%Y-%m-%d` \
     && sed -e "1,5000d" $HOME/.bash_history > $HOME/.bash_history.tmp \
     && mv $HOME/.bash_history.tmp $HOME/.bash_history
-
-# Use MacVim as editor when installed, otherwise regular Vim
-test $(which mvim) \
-    && export EDITOR="$(which mvim) -v" \
-    && alias vim="mvim -v" \
-    && alias vi="mvim -v" \
-    || export EDITOR="usr/local/bin/vim"
 
 export C_INCLUDE_PATH="$C_INCLUDE_PATH:/usr/local/include"
 export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib"
@@ -65,6 +60,11 @@ test $(which rlwrap) \
 
 # Haskell bin folder
 #export PATH="$PATH:$HOME/Library/Haskell/bin"
+if [ -z "$(which ghc)" ] && [ -n "$(which stack)" ]
+then
+    alias ghc="stack ghc"
+    alias ghci="stack ghci"
+fi
 
 # Java home
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home"
@@ -89,9 +89,11 @@ fi
 
 # Homebrew tab completion
 if type brew 2&>/dev/null
-  then
+then
     for completion_file in $(brew --prefix)/etc/bash_completion.d/*
-      do
+    do
         source "$completion_file"
-      done
+    done
 fi
+
+source "$HOME/.profile"
