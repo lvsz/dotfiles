@@ -46,6 +46,10 @@ setlocal mouse=a
 
 " make :Q work like :qa
 command Q qa
+command Qa qa
+command Xa xa
+command W wa
+command Wa wa
 
 " map Ctrl-C to ESC
 inoremap <C-c> <ESC>
@@ -104,7 +108,7 @@ hi DiffDelete   ctermfg=231  ctermbg=31
 hi DiffText     ctermfg=none ctermbg=88
 
 " highlight trailing whitespace
-hi ExtraWhitespace ctermbg=220
+hi ExtraWhitespace ctermbg=220 guibg=#ffff00
 match ExtraWhitespace /\s\+$/
 
 " press r+Backspace to delete trailing whitespace
