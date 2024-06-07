@@ -1,25 +1,39 @@
+[user]
+    email = sile@odoo.com
+    name = Levi Siuzdak (sile)
 [core]
-    editor = vim
 	autocrlf = input
-	excludesfile = /home/odoo/.gitignore
+	excludesfile = ~/.gitignore
 [init]
     defaultBranch = main
-[oh-my-zsh]
-	hide-status = 1
-	hide-dirty = 1
+[maintenance]
+	auto = true
+	strategy = incremental
 [gpg]
 	program = gpg
-[commit]
-	gpgsign = true
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+[commit]
+	gpgsign = true
+[pull]
+	ff = only
 [checkout]
 	defaultRemote = origin
 [diff]
 	tool = vimdiff
 [difftool]
 	prompt = false
+[difftool "vimdiff"]
+	cmd = nvim -nfdc 'wincmd l' -c 'cd $GIT_PREFIX' $LOCAL $REMOTE
+    #cmd = nvim -nfdc 'wincmd l' -c 'cd \"$GIT_PREFIX\"' \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = fugitive
+[mergetool "fugitive"]
+	cmd = nvim -nf -c 'Gvdiffsplit!' $MERGED
+[oh-my-zsh]
+    hide-status = 1
+    hide-dirty = 1
