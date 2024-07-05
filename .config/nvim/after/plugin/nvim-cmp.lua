@@ -10,12 +10,10 @@ cmp.setup {
         completion = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        -- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-e>'] = cmp.mapping.complete(),
         ['<C-c>'] = cmp.mapping.abort(),
-        -- Accept currently selected item.
-        -- Set `select` to `false` to only confirm explicitly selected items.
+        -- Accept currently selected item
+        -- Set `select` to `false` to only confirm explicitly selected items
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping({
             c = function()
@@ -70,7 +68,7 @@ cmp.setup {
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'ultisnips' }, -- For ultisnips users.
+        { name = 'ultisnips' },
     }, {
         { name = 'buffer' },
     }),
@@ -102,7 +100,7 @@ cmp.setup.cmdline(':', {
     matching = { disallow_symbol_nonprefix_matching = false }
 })
 
--- Set up lspconfig.
+-- Set up lspconfig
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')['ruff_lsp'].setup {
     capabilities = capabilities

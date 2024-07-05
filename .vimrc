@@ -32,6 +32,9 @@ if !isdirectory("~/.cache/vim/undo")
 endif
 set undodir="~/.cache/vim/undo"
 
+" macvim: share clipboard with macOS
+set clipboard+=unnamed
+
 " use Q to toggle mouse instead of ex mode
 map <L-q> :call MouseToggle()<Cr>
 function! MouseToggle()
