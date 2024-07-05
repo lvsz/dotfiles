@@ -3,7 +3,9 @@ if filereadable($VIMRUNTIME . "/defaults.vim")
     source $VIMRUNTIME/defaults.vim
 endif
 
-syntax on
+if !has('nvim')
+    syntax on
+endif
 
 set history=1000
 set t_Co=256
@@ -30,9 +32,6 @@ if !isdirectory("~/.cache/vim/undo")
 endif
 set undodir="~/.cache/vim/undo"
 
-" macvim: share clipboard with macOS
-set clipboard=unnamed
-
 " use Q to toggle mouse instead of ex mode
 map <L-q> :call MouseToggle()<Cr>
 function! MouseToggle()
@@ -50,6 +49,9 @@ command Qa qa
 command Xa xa
 command W wa
 command Wa wa
+if has('nvim')
+    command X Xa
+endif
 
 " map Ctrl-C to ESC
 inoremap <C-c> <ESC>
