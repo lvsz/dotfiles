@@ -1,0 +1,29 @@
+snippet fix
+[FIX]`git diff --staged --name-only \
+	| rg '^(?:odoo/)?(?:addons/)?(\w+)' -or ' $1' \
+	| sort -u \
+	| paste -sd, -`: $1
+
+Versions
+--------
+- $2
+
+Steps
+-----
+1. $3
+
+Issue
+-----
+$4
+
+Cause
+-----
+$5
+
+Solution
+--------
+$6
+
+`git branch --show-current | rg -io 'opw-\d*'`
+
+endsnippet

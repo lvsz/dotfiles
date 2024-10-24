@@ -1,0 +1,16 @@
+snippet pprint
+__import__('pprint').pprint($1)
+endsnippet
+
+snippet ipdb
+__import__('ipdb').set_trace()
+endsnippet
+
+snippet lockpoint
+try:
+	lock = __import__('filelock').FileLock('.ipdb').acquire(timeout=1).lock
+	__import__('ipdb').set_trace()
+	lock.release()
+	__import__('os').remove('.ipdb')
+except: print('failed ipdb lock')
+endsnippet
